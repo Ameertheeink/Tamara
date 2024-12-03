@@ -34,8 +34,7 @@ public class OrderController {
     @PostMapping("/add")   //add new order
     public ResponseEntity<OrderResponse> addOrder(@RequestBody Order order) {
         Order addOrder = orderService.addOrder(order);
-        OrderResponse orderResponse = new OrderResponse();
-        orderResponse.setId(addOrder.getId());
+        OrderResponse orderResponse = OrderResponse.builder().Id(addOrder.getId()).build();
         return ResponseEntity.status(HttpStatus.OK).body(orderResponse);
 
     }

@@ -12,8 +12,14 @@ public class OrderService {
     @Autowired
     private OrderRepository orderRepo;
 
-    public List<Order> getAllOrders() {
-        return orderRepo.findAll();
+    public List<Order> getAllOrders()
+    {
+        List<Order> orders= orderRepo.findAll();
+        if(orders.isEmpty()){
+            throw new RuntimeException("No orders found");
+        }
+        return orders;
+
     }
 
     public Order addOrder(Order order) {
